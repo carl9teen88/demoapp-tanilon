@@ -1,0 +1,48 @@
+<div class="button-row">
+    <div class="button-container">
+        <button mat-mini-fab color="primary" aria-label="icon button with a plus one icon" [routerLink]="['/new-user']"> + </button>
+    </div>
+</div>
+
+<table mat-table [dataSource]="userList" class="mat-elevation-z8">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+    </ng-container>
+  
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email Address </th>
+      <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+    </ng-container>
+  
+    <!-- Fullname Column -->
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef> Full Name </th>
+      <td mat-cell *matCellDef="let user"> {{user.fullname}} </td>
+    </ng-container>
+  
+    <!-- Address Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let user"> {{user.address}} </td>
+    </ng-container>
+
+    <!-- Update At Column -->
+    <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef> Updated At </th>
+        <td mat-cell *matCellDef="let user"> {{user.updatedAt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let user" fxLayoutGap="5px">
+          <button mat-button color="primary" [routerLink]="['/edit-user/', user.id]"><mat-icon>edit</mat-icon></button>
+          <button mat-button color="warn" (click)="deleteUser(user.id)"><mat-icon>delete</mat-icon></button>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

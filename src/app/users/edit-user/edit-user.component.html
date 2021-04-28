@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Edit User</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Email Address</mat-label>
+            <input required matInput type="text" [(ngModel)]="userInfo.email">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Full Name</mat-label>
+            <input required matInput [(ngModel)]='userInfo.fullname'>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input required matInput [(ngModel)]='userInfo.address'>
+        </mat-form-field>
+        <br>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="updateUser()">Update</button>
+        <button mat-button [routerLink]="['/users']">Close</button>
+    </mat-card-actions>
+</mat-card>
