@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { UserInfo } from '../common/models/user-info';
+import { UserInfoVM } from '../common/models/user-info';
 
 @Component({
   selector: 'app-new-user',
@@ -11,7 +11,7 @@ import { UserInfo } from '../common/models/user-info';
 
 export class NewUserComponent implements OnInit {
 
-  userInfo = new UserInfo();
+  userInfo = new UserInfoVM();
 
   constructor(private userService: UsersService, private router: Router) { }
 
