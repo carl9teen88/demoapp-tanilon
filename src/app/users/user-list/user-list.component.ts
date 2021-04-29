@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -15,7 +13,7 @@ export class UserListComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'email', 'fullname', 'address', 'updatedAt', 'action'];
 
-  constructor(private userService: UsersService, private router: Router) { }
+  constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
     this.getUsers();
