@@ -28,7 +28,8 @@ export class EditUserComponent implements OnInit {
           _id: this.userId,
           usr_address: this.userInfo.address,
           usr_email: this.userInfo.email,
-          usr_fullname: this.userInfo.fullname
+          usr_fullname: this.userInfo.fullname,
+          updated_at: new Date()
         })
         .subscribe(user => {
           if (user) this.router.navigate(['/users']);
