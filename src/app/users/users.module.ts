@@ -15,9 +15,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NotificaitonComponent } from './common/components/notificaiton/notificaiton.component';
 
 @NgModule({
-  declarations: [UserListComponent, NewUserComponent, EditUserComponent,],
+  declarations: [UserListComponent, NewUserComponent, EditUserComponent, NotificaitonComponent,],
   imports: [
     CommonModule,
     AppRoutingModule,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { UserInfoVM } from '../common/models/user-info';
 import { EmailHelpers } from '../../utils/email-validation';
+import { NotificaitonComponent } from '../common/components/notificaiton/notificaiton.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -11,15 +11,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./new-user.component.scss']
 })
 
-export class NewUserComponent implements OnInit {
+export class NewUserComponent extends NotificaitonComponent implements OnInit {
 
   userInfo = new UserInfoVM();
 
   emailHelper = new EmailHelpers();
 
-  constructor(private userService: UsersService,
-    private router: Router,
-    private snackBar: MatSnackBar) { }
+  constructor(private userService: UsersService, snackBar: MatSnackBar) { super(snackBar) }
 
   ngOnInit(): void {
   }
@@ -38,7 +36,6 @@ export class NewUserComponent implements OnInit {
           })
           .subscribe(user => {
             if (user) {
-              //this.router.navigate(['/users']);
               this.openSnackBar("Successfully saved!", true);
             }
           });
@@ -47,14 +44,6 @@ export class NewUserComponent implements OnInit {
     else {
       this.openSnackBar("Required field(s) empty.", false);
     }
-  }
-
-  openSnackBar(msg: string, success: boolean) {
-    this.snackBar.open(msg, 'Close', {
-      duration: 3000,
-      horizontalPosition: 'start',
-      verticalPosition: 'top'
-    });
   }
 
   isValid() {

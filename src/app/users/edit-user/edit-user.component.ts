@@ -4,13 +4,14 @@ import { UsersService } from 'src/app/services/users.service';
 import { UserInfoVM } from '../common/models/user-info';
 import { EmailHelpers } from '../../utils/email-validation';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificaitonComponent } from '../common/components/notificaiton/notificaiton.component';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent extends NotificaitonComponent implements OnInit {
 
   userId = "";
 
@@ -19,9 +20,7 @@ export class EditUserComponent implements OnInit {
   emailHelper = new EmailHelpers();
 
   constructor(private userService: UsersService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar) { }
+    private activatedRoute: ActivatedRoute, snackBar: MatSnackBar) { super(snackBar) }
 
   ngOnInit(): void {
     this.getUser();
@@ -49,15 +48,6 @@ export class EditUserComponent implements OnInit {
       this.openSnackBar("Required field(s) empty.", false);
     }
   }
-
-  openSnackBar(msg: string, success: boolean) {
-    this.snackBar.open(msg, 'Close', {
-      duration: 3000,
-      horizontalPosition: 'start',
-      verticalPosition: 'top'
-    });
-  }
-
 
   getUser() {
     this.activatedRoute.params.subscribe(params => {
