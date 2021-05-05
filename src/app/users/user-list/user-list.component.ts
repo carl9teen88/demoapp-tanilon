@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users.service';
+import { DateFormatter } from 'src/app/utils/date-formater';
 
 @Component({
   selector: 'app-user-list',
@@ -10,6 +11,8 @@ import { UsersService } from 'src/app/services/users.service';
 export class UserListComponent implements OnInit {
 
   userList = [];
+
+  dateFormatter  = new DateFormatter();
 
   displayedColumns: string[] = ['id', 'email', 'fullname', 'address', 'updatedAt', 'action'];
 
@@ -24,7 +27,12 @@ export class UserListComponent implements OnInit {
       .getUsers()
       .subscribe(users => {
         this.userList = users.map((user: User, index: Number) => {
-          return new UserInfo(user._id, user.usr_email, user.usr_fullname, user.usr_address, user.updated_at, "action");
+          return new UserInfo(
+            user._id, 
+            user.usr_email, 
+            user.usr_fullname, 
+            user.usr_address, 
+            this.dateFormatter.formatNow(user.updated_at), "action");
         });
       });
   }
@@ -47,7 +55,7 @@ class UserInfo {
     private email?: string,
     private fullname?: string,
     private address?: string,
-    private updatedAt?: Date,
+    private updatedAt?: string,
     private action?: string
   ) { }
 }
