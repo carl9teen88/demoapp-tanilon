@@ -5,22 +5,22 @@
     <mat-card-content>
         <mat-form-field appearance="fill">
             <mat-label>Email Address</mat-label>
-            <input matInput type="text" [(ngModel)]="userInfo.email">
+            <input required matInput type="text" [(ngModel)]="userInfo.email">
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Full Name</mat-label>
-            <input matInput [(ngModel)]='userInfo.fullname'>
+            <input required matInput [(ngModel)]='userInfo.fullname'>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Address</mat-label>
-            <input matInput [(ngModel)]='userInfo.address'>
+            <input required matInput [(ngModel)]='userInfo.address'>
         </mat-form-field>
         <br>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="saveUser()">Save</button>
-        <button mat-raised-button color="warn" [routerLink]="['/users']">Cancel</button>
+        <button mat-raised-button color="warn" [routerLink]="['/users']">Close</button>
     </mat-card-actions>
 </mat-card>
